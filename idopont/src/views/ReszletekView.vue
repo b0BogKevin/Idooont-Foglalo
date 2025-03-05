@@ -14,6 +14,7 @@
   <button v-on:click="kuldes()" type="submit" class="btn btn-primary">Submit</button>
 </form>
   </div>
+  <div id="siker" >{{ siker }}</div>
 </template>
 
 <script setup>
@@ -26,11 +27,16 @@ const router = useRouter()
 const store = usetimeStore()
 const nev = ref("");
 const tel = ref("");
+const siker = ref("")
 const kuldes = ()=>{
 
 if (nev.value != ""&&tel.value!="" ) {
   axios.post("http://localhost:3000/idopontok",{day:store.nap,hour:store.ora})
-  
+  siker.value="Siker"
+  if (router) {
+  router.push("/")
+    
+  }
 }
 }
 </script>

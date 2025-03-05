@@ -18,13 +18,16 @@ onMounted(() => {
 })
 const napSelect = () => {
   lehetsegesIdopontok.value = [8, 9, 10, 11, 12, 13, 14, 15, 16]
-  idopontok.value.forEach(ido => {
+  if (idopontok.value) {
+    idopontok.value.forEach(ido => {
     if (ido.day == nap.value) {
       let index = lehetsegesIdopontok.value.indexOf(ido.hour)
       lehetsegesIdopontok.value.splice(index, 1)
     }
 
   });
+  }
+  
 
   vanNap.value = true;
 }
@@ -36,7 +39,10 @@ store.nap = nap.value
 
 console.log(store.ora);
 console.log(store.nap);
-router.push("/reszletek")
+if (router) {
+  router.push("/reszletek")
+}
+
 
 }
 </script>
@@ -45,7 +51,7 @@ router.push("/reszletek")
   <div class="container">
     <h1>Pszichológus időpont foglalás</h1>
     <div>Nap</div>
-    <select v-model="nap" v-on:change="napSelect" class="form-select form-select-lg">
+    <select v-model="nap" v-on:change="napSelect" class="form-select form-select-lg" id="nap">
       <option value="1">Hétfő</option>
       <option value="2">Kedd</option>
       <option value="3">Szerda</option>
@@ -55,12 +61,12 @@ router.push("/reszletek")
     </select>
 
     <div v-if="vanNap">
-      <select v-model="ora" class="form-select form-select-lg">
+      <select v-model="ora" class="form-select form-select-lg" id="ora">
         <option v-for="ido in lehetsegesIdopontok" :value="ido">{{ ido }}</option>
       </select>
     </div>
     <div v-else>Itt jelennek meg a lehetséges időpontok</div>
 
   </div>
-  <button v-on:click="foglalas" class="btn btn-outline-success">Foglalás</button>
+  <button id="button" v-on:click="foglalas" class="btn btn-outline-success">Foglalás</button>
 </template>
