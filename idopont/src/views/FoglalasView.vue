@@ -1,6 +1,10 @@
 <script setup>
+import {useRouter} from 'vue-router'
 import axios from 'axios';
 import { ref, onMounted } from 'vue';
+import { usetimeStore } from '@/stores/ido.js';
+const router =useRouter()
+const store = usetimeStore()
 const nap = ref();
 const ora = ref();
 const idopontok = ref();
@@ -24,6 +28,17 @@ const napSelect = () => {
 
   vanNap.value = true;
 }
+
+const foglalas = ()=>
+{
+store.ora = ora.value
+store.nap = nap.value
+
+console.log(store.ora);
+console.log(store.nap);
+router.push("/reszletek")
+
+}
 </script>
 
 <template>
@@ -41,11 +56,11 @@ const napSelect = () => {
 
     <div v-if="vanNap">
       <select v-model="ora" class="form-select form-select-lg">
-        <option v-for="ido in lehetsegesIdopontok" value="{{ ido }}">{{ ido }}</option>
+        <option v-for="ido in lehetsegesIdopontok" :value="ido">{{ ido }}</option>
       </select>
     </div>
     <div v-else>Itt jelennek meg a lehetséges időpontok</div>
 
   </div>
-  <button class="btn btn-outline-success">Foglalás</button>
+  <button v-on:click="foglalas" class="btn btn-outline-success">Foglalás</button>
 </template>

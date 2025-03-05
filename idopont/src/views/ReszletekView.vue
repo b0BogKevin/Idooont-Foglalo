@@ -1,15 +1,37 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="content">
+    <form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Név</label>
+    <input v-model="nev" type="text" class="form-control"  placeholder="Név">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Telefonszám</label>
+    <input v-model="tel" type="text" class="form-control"  placeholder="Telefonszám">
+  </div>
+
+  <button v-on:click="kuldes()" type="submit" class="btn btn-primary">Submit</button>
+</form>
   </div>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
+<script setup>
+import { ref } from 'vue';
+import { usetimeStore } from '@/stores/ido.js';
+import axios from 'axios';
+import {useRouter} from 'vue-router'
+
+const router = useRouter()
+const store = usetimeStore()
+const nev = ref("");
+const tel = ref("");
+const kuldes = ()=>{
+
+if (nev.value != ""&&tel.value!="" ) {
+  axios.post("http://localhost:3000/idopontok",{day:store.nap,hour:store.ora})
+  
 }
-</style>
+}
+</script>
+
