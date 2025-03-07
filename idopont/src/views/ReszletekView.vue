@@ -1,12 +1,13 @@
 <template>
-  <div class="content">
-    <form v-on:submit.prevent>
-      <div class="form-group">
+  <div class="container col-4">
+    <h2>Adatok megadása</h2>
+    <form v-on:submit.prevent class="shadow p-4 rounded mt-4">
+      <div class="form-group m-2">
         <label for="exampleInputEmail1">Név</label>
         <input v-model="nev" type="text" class="form-control" placeholder="Név">
       </div>
 
-      <div class="form-group">
+      <div class="form-group m-2">
         <label for="exampleInputEmail1">Telefonszám</label>
         <input v-model="tel" type="text" class="form-control" placeholder="Telefonszám">
       </div>
