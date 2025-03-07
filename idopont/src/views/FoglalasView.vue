@@ -66,7 +66,7 @@ if (router) {
       </select>
     </div>
     <div v-else>Itt jelennek meg a lehetséges időpontok</div>
+    <button id="button" v-on:click="foglalas" class="btn btn-outline-success">Foglalás</button>
 
   </div>
-  <button id="button" v-on:click="foglalas" class="btn btn-outline-success">Foglalás</button>
 </template>
