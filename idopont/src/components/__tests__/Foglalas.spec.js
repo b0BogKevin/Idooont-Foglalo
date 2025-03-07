@@ -2,8 +2,11 @@ import { describe, it, expect, beforeEach } from 'vitest'
 
 import { mount } from '@vue/test-utils'
 import Foglalas from '../../views/FoglalasView.vue'
+import Reszletek from '../../views/ReszletekView.vue'
 import { createPinia, setActivePinia } from 'pinia'
 import { usetimeStore } from '@/stores/ido.js'
+
+
 describe('Foglalás', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
@@ -24,5 +27,13 @@ describe('Foglalás', () => {
     expect(store.ora).toBe(16)
   })
 
+  it('toast ellenőrzése', async() => {
+    const wrapper = mount(Reszletek)
+    await wrapper.find("#gomb").trigger("click")
 
+    setTimeout(() => {
+      expect(wrapper.text()).toContain("Adjon meg minden adatot!")
+    }, 1000);
+    
+  })
 })

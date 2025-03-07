@@ -11,10 +11,9 @@
         <input v-model="tel" type="text" class="form-control" placeholder="Telefonszám">
       </div>
 
-      <button v-on:click="kuldes()" type="submit" class="btn btn-primary">Submit</button>
+      <button v-on:click="kuldes()" type="submit" class="btn btn-primary" id="gomb">Submit</button>
     </form>
   </div>
-  <div id="siker">{{ siker }}</div>
 </template>
 
 <script setup>
@@ -38,6 +37,10 @@ const kuldes = () => {
       toast.success("Sikeres foglalás")
 
     }
+  }
+  else{
+    toast.error("Adjon meg minden adatot!")
+
   }
 }
 </script>
